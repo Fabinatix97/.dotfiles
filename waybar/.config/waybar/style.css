@@ -49,6 +49,7 @@ window#waybar.hidden {
 #custom-audio,
 #custom-bluetui,
 #custom-network,
+#custom-nordvpn,
 #custom-day,
 #clock,
 #custom-weather,
@@ -108,9 +109,10 @@ window#waybar.hidden {
     }
 }
 
-/* Bluetui and network as combined module */
+/* Bluetui, network and NordVPN as combined module */
 #custom-bluetui,
-#custom-network {
+#custom-network,
+#custom-nordvpn {
     margin-right: 0px;
 }
 
@@ -119,6 +121,11 @@ window#waybar.hidden {
 }
 
 #custom-network {
-    border-radius: 0 10px 10px 0;
     padding-left: 0px;
+    padding-right: 0px;
+    border-radius: 0px;
+}
+
+#custom-nordvpn {
+    border-radius: 0 10px 10px 0;
 }
