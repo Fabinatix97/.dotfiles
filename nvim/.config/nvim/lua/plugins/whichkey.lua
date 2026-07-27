@@ -19,6 +19,10 @@ return {
                     icon = "󰊢",
                     color = "orange",
                 },
+                {
+                    pattern = "discard",
+                    icon = "",
+                },
             },
         },
 
