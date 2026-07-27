@@ -27,7 +27,7 @@ return {
 			function()
 				Snacks.lazygit()
 			end,
-			desc = "Lazygit",
+			desc = "lazygit",
 		},
 	},
 }

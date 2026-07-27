@@ -17,5 +17,5 @@ vim.keymap.set("n", "]d", function() vim.diagnostic.jump({ count = 1, float = tr
 vim.keymap.set("n", "[d", function() vim.diagnostic.jump({ count = -1, float = true }) end, { desc = "previous diagnostic" })
 
 -- Lazy and Mason
-vim.keymap.set("n", "<leader>ll", vim.cmd.Lazy, { desc = "lazy" })
+vim.keymap.set("n", "<leader>ll", vim.cmd.Lazy, { desc = "lazy plugin manager" })
 vim.keymap.set("n", "<leader>cm", vim.cmd.Mason, { desc = "mason" })
