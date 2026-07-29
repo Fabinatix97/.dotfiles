@@ -7,6 +7,22 @@ return {
 		{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
 	},
 	config = function()
+		require("telescope").setup({
+			defaults = require("telescope.themes").get_ivy(),
+			pickers = {
+				find_files = {
+					hidden = true,
+					no_ignore = true,
+				},
+				live_grep = {
+					additional_args = { "--hidden", "--no-ignore" },
+				},
+				grep_string = {
+					additional_args = { "--hidden", "--no-ignore" },
+				},
+			},
+		})
+
 		pcall(require("telescope").load_extension, "fzf")
 
 		local builtin = require("telescope.builtin")
