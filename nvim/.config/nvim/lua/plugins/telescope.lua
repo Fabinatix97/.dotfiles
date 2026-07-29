@@ -31,7 +31,7 @@ return {
 			callback = function(event)
 				local buf = event.buf
 				vim.keymap.set("n", "grr", builtin.lsp_references, { buffer = buf, desc = "goto references" })
-				vim.keymap.set("n", "gri",builtin.lsp_implementations, { buffer = buf, desc = "goto implementation" })
+				vim.keymap.set("n", "gri", builtin.lsp_implementations, { buffer = buf, desc = "goto implementation" })
 				vim.keymap.set("n", "grd", builtin.lsp_definitions, { buffer = buf, desc = "goto definition" })
 				vim.keymap.set("n", "gO", builtin.lsp_document_symbols, { buffer = buf, desc = "open document symbols" })
 				vim.keymap.set("n", "gW", builtin.lsp_dynamic_workspace_symbols, { buffer = buf, desc = "open workspace symbols" })
