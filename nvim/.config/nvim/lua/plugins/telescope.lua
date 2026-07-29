@@ -21,6 +21,9 @@ return {
 					additional_args = { "--hidden", "--no-ignore" },
 				},
 			},
+            extensions = {
+                fzf = {},
+            },
 		})
 
 		pcall(require("telescope").load_extension, "fzf")
