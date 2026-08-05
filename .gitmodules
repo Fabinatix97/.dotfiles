@@ -1,3 +1,4 @@
 [submodule "private"]
 	path = private
-	url = https://github.com/Fabinatix97/dotfiles-personal.git
+	url = git@github.com:Fabinatix97/dotfiles-personal.git
+    branch = main
