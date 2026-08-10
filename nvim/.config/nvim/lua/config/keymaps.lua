@@ -20,3 +20,8 @@ vim.keymap.set("n", "[d", function() vim.diagnostic.jump({ count = -1, float = t
 -- Lazy and Mason
 vim.keymap.set("n", "<leader>ll", vim.cmd.Lazy, { desc = "lazy plugin manager" })
 vim.keymap.set("n", "<leader>cm", vim.cmd.Mason, { desc = "mason" })
+
+-- Useful for executing Lua code
+vim.keymap.set("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "source file"})
+vim.keymap.set("n", "<leader>x", "<cmd>lua<CR>", { desc = "execute line"})
+vim.keymap.set("v", "<leader>x", "<cmd>lua<CR>", { desc = "execute selection"})
