@@ -3,9 +3,6 @@ vim.keymap.set({ "n", "v" }, "<C-c>", "<Esc>")
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "project view" })
 
--- Use the black-hole register for the following operation, preserving the unnamed register
-vim.keymap.set("n", "<leader>x", '"_', { desc = "discard next operation" })
-
 -- Keep view centered while scrolling
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
