@@ -124,7 +124,6 @@ return {
 			"php-cs-fixer",
 			"stylua",
             "twigcs",
-            "twig-cs-fixer",
 		})
 
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
