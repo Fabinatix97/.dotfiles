@@ -132,13 +132,14 @@ sudo usermod -aG nordvpn $USER
 # Installing onedrive
 yay -S --noconfirm onedrive-abraunegg
 systemctl --user daemon-reload
-systemctl --user enable --now onedrive.service
 
 echo
 echo "========================================"
 echo "Installation complete."
 echo "Please reboot, then run:"
 echo
-echo "  systemctl enable --now nordvpn"
+echo "  onedrive --sync --resync"
+echo "  systemctl --user enable --now onedrive.service"
+echo "  sudo systemctl enable --now nordvpnd"
 echo "  nordvpn login --token <YOUR_ACCESS_TOKEN>"
 echo "========================================"
