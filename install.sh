@@ -133,6 +133,12 @@ sudo usermod -aG nordvpn $USER
 yay -S --noconfirm onedrive-abraunegg
 systemctl --user daemon-reload
 
+# Installing other AUR packages
+yay -S --noconfirm cursor-bin
+
+# Other
+mkdir -p "$HOME/projects/"
+
 echo
 echo "========================================"
 echo "Installation complete."
