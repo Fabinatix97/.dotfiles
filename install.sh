@@ -86,6 +86,19 @@ cd "$HOME/dotfiles-personal/"
 stow bashrc git fonts onedrive
 fc-cache -fv
 
+# Update .bashrc
+cat >> "$HOME/.bashrc" <<'EOF'
+if [ -d ~/.bashrc.d ]; then
+  for rc in ~/.bashrc.d/*; do
+    if [ -f "$rc" ]; then
+      . "$rc"
+    fi
+  done
+fi
+unset rc
+EOF
+source "$HOME/.bashrc"
+
 # Enable hyprpokitagent
 systemctl --user enable hyprpolkitagent.service
 
