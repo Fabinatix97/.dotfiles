@@ -118,10 +118,12 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 
 # Install sdkman for managing jdks and sdks
-curl -s "https://get.sdkman.io" | bash
-source "$HOME/.sdkman/bin/sdkman-init.sh"
-sdk install java 26-tem
-sdk install maven
+bash -c '
+  curl -s "https://get.sdkman.io" | bash
+  source "$HOME/.sdkman/bin/sdkman-init.sh"
+  sdk install java 26-tem
+  sdk install maven
+'
 
 # Install nordvpn
 yay -S --noconfirm nordvpn-bin
