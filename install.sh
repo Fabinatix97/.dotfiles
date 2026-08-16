@@ -30,6 +30,7 @@ sudo pacman -S --needed --noconfirm \
   keepassxc \
   kitty \
   lazygit \
+  libfido2 \
   make \
   man-db
   man-pages \
@@ -66,25 +67,21 @@ rm -rf "$HOME/yay"
 # Setting up ssh
 mkdir -p "$HOME/.ssh"
 chmod 700 "$HOME/.ssh"
-cd "$HOME"
-git clone -b arch https://github.com/Fabinatix97/dotfiles.git
-cp "$HOME/dotfiles/ssh/id_ed25519.pub" "$HOME/.ssh"
+cd "$HOME/.ssh"
 cp "$HOME/dotfiles/ssh/known_hosts" "$HOME/.ssh"
-echo "Decrypting SSH private key..."
-age --decrypt -o "$HOME/.ssh/id_ed25519" "$HOME/dotfiles/ssh/id_ed25519.age"
-chmod 600 "$HOME/.ssh/id_ed25519"
-chmod 644 "$HOME/.ssh/id_ed25519.pub"
 chmod 600 "$HOME/.ssh/known_hosts"
+echo "Insert your YubiKey and touch it when prompted..."
+ssh-keygen -K
+echo "Testing GitHub SSH authentication..."
+ssh -i ~/.ssh/id_ed25519_sk_rk_personal -T git@github.com || true
 rm -rf "$HOME/dotfiles"
 
 # Clone and stow dotfiles
-cd "$HOME"
-git clone -b arch git@github.com:Fabinatix97/dotfiles.git
+git clone -b arch git@github.com:Fabinatix97/dotfiles.git "$HOME/dotfiles/"
 cd "$HOME/dotfiles/"
 git submodule update --init private
 stow btop fastfetch hypr kitty nvim screenshot starship tmux waybar wofi
-cd "$HOME"
-git clone -b arch git@github.com:Fabinatix97/dotfiles-personal.git
+git clone -b arch git@github.com:Fabinatix97/dotfiles-personal.git "$HOME/dotfiles-personal/"
 cd "$HOME/dotfiles-personal/"
 stow bashrc git fonts onedrive
 fc-cache -fv
