@@ -68,7 +68,7 @@ rm -rf "$HOME/yay"
 mkdir -p "$HOME/.ssh"
 chmod 700 "$HOME/.ssh"
 cd "$HOME/.ssh"
-cp "$HOME/dotfiles/ssh/*" "$HOME/.ssh"
+cp -a "$HOME/dotfiles/ssh/." "$HOME/.ssh"
 chmod 600 "$HOME/.ssh/known_hosts"
 echo "Insert your YubiKey and touch it when prompted..."
 ssh-keygen -K
