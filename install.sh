@@ -47,6 +47,7 @@ sudo pacman -S --needed --noconfirm \
   starship \
   stow \
   swaync \
+  thunderbird \
   tmux \
   tree \
   unzip \
