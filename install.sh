@@ -43,6 +43,7 @@ sudo pacman -S --needed --noconfirm \
   python-pip \
   ripgrep \
   satty \
+  sbctl \
   starship \
   stow \
   swaync \
@@ -138,6 +139,15 @@ yay -S --noconfirm cursor-bin
 
 # Other
 mkdir -p "$HOME/projects/"
+
+# Configuring secure boot
+sudo sbctl create-keys
+
+# See https://wiki.archlinux.org/title/Unified_Extensible_Firmware_Interface/Secure_Boot#Signing
+sudo sbctl verify | sed -E 's|^.* (/.+) is not signed$|sudo sbctl sign -s "\1"|e' || true
+
+sudo sbctl verify
+sudo sbctl enroll-keys --microsoft
 
 echo
 echo "========================================"
