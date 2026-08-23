@@ -12,10 +12,13 @@ sudo pacman -S --needed --noconfirm \
   btop \
   chromium \
   cliphist \
+  cups \
+  cups-filters \
   curl \
   fastfetch \
   fd \
   fzf \
+  ghostscript \
   gimp \
   git \
   github-cli \
@@ -42,6 +45,7 @@ sudo pacman -S --needed --noconfirm \
   python \
   python-pip \
   ripgrep \
+  sane \
   satty \
   sbctl \
   starship \
@@ -126,6 +130,19 @@ bash -c '
   sdk install java 26-tem
   sdk install maven
 '
+
+# Set up printer
+sudo systemctl enable --now cups.service
+if lpinfo -m | grep -q 'lsb/usr/cupsfilters/pxlcolor.ppd'; then
+    sudo lpadmin \
+        -p HP-CP1525N \
+        -v socket://192.168.178.26:9100 \
+        -m lsb/usr/cupsfilters/pxlcolor.ppd \
+        -E
+    sudo lpadmin -d HP-CP1525N
+else
+    echo "HP CP1525N driver is not available; skipping printer setup."
+fi
 
 # Install nordvpn
 yay -S --noconfirm nordvpn-bin
