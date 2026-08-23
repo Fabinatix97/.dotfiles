@@ -13,9 +13,6 @@ return {
     -- Mason DAP integration
     {
       'jay-babu/mason-nvim-dap.nvim',
-      dependencies = {
-        'mfussenegger/nvim-dap',
-      },
       config = function()
           require('mason-nvim-dap').setup {
               automatic_installation = true,
