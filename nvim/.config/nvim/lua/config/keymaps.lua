@@ -1,7 +1,7 @@
 -- General
 vim.keymap.set({ "n", "v" }, "<C-c>", "<Esc>")
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "project view" })
+vim.keymap.set("n", "-", vim.cmd.Ex, { desc = "open netrw" })
 
 -- Keep view centered while scrolling
 vim.keymap.set("n", "J", "mzJ`z")
