@@ -8,6 +8,7 @@ sudo pacman -S --needed --noconfirm \
   age \
   base-devel \
   bat \
+  bc \
   brightnessctl \
   btop \
   chromium \
