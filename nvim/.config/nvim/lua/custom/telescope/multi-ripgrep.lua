@@ -55,6 +55,7 @@ return function(opts)
         "--line-number",
         "--column",
         "--smart-case",
+        "--hidden",
       })
     end,
     entry_maker = make_entry.gen_from_vimgrep(opts),
