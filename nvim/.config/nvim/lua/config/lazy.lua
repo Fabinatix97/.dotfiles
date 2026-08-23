@@ -20,5 +20,19 @@ require("lazy").setup({
 	},
 	install = { colorscheme = { "habamax" } },
 	checker = { enabled = true },
-    rocks = { enabled = false, },
+	rocks = { enabled = false },
+	ui = {
+		border = "rounded",
+	},
+})
+
+-- Backdrop floats omit `border`, so Neovim applies 'winborder' to them.
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "lazy_backdrop",
+	callback = function(event)
+		local win = vim.fn.win_findbuf(event.buf)[1]
+		if win then
+			vim.api.nvim_win_set_config(win, { border = "none" })
+		end
+	end,
 })
