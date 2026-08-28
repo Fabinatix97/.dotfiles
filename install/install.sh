@@ -75,21 +75,21 @@ rm -rf "$HOME/yay"
 mkdir -p "$HOME/.ssh"
 chmod 700 "$HOME/.ssh"
 cd "$HOME/.ssh"
-cp -a "$HOME/dotfiles/ssh/." "$HOME/.ssh"
+cp -a "$HOME/.dotfiles/ssh/." "$HOME/.ssh"
 chmod 600 "$HOME/.ssh/known_hosts"
 echo "Insert your YubiKey and touch it when prompted..."
 ssh-keygen -K
 echo "Testing GitHub SSH authentication..."
 ssh -i ~/.ssh/id_ed25519_sk_rk_personal -T git@github.com || true
-rm -rf "$HOME/dotfiles"
+rm -rf "$HOME/.dotfiles"
 
 # Clone and stow dotfiles
-git clone -b arch git@github.com:Fabinatix97/dotfiles.git "$HOME/dotfiles/"
-cd "$HOME/dotfiles/"
+git clone -b arch git@github.com:Fabinatix97/.dotfiles.git "$HOME/.dotfiles/"
+cd "$HOME/.dotfiles/"
 git submodule update --init private
 stow btop fastfetch hypr kitty nvim screenshot starship tmux waybar wofi
-git clone -b arch git@github.com:Fabinatix97/dotfiles-personal.git "$HOME/dotfiles-personal/"
-cd "$HOME/dotfiles-personal/"
+git clone -b arch git@github.com:Fabinatix97/.dotfiles-personal.git "$HOME/.dotfiles-personal/"
+cd "$HOME/.dotfiles-personal/"
 stow bashrc git fonts onedrive
 fc-cache -fv
 
