@@ -68,7 +68,7 @@ sudo pacman -S --needed --noconfirm \
 # Build yay for AUR access
 git clone https://aur.archlinux.org/yay.git "$HOME/yay"
 cd "$HOME/yay"
-makepkg -si --needed
+makepkg -si --needed --noconfirm
 cd "$HOME"
 rm -rf "$HOME/yay"
 
