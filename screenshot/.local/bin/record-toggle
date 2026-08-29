@@ -1,14 +1,22 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-STATE_FILE="/tmp/wf-recorder-current"
+state=/tmp/wf-recorder-current
 
-if pgrep wf-recorder > /dev/null; then
-    pkill wf-recorder
-    FILE=$(cat "$STATE_FILE")
-    rm -f "$STATE_FILE"
-    notify-send "🎥 Recording stopped" "$FILE" -i video-x-generic
-else
-    OUT="$HOME/Videos/recording-$(date +%Y%m%d-%H%M%S).mp4"
-    echo "$OUT" > "$STATE_FILE"
-    wf-recorder -f "$OUT" &
+if pgrep -x wf-recorder >/dev/null; then
+  pkill -INT -x wf-recorder
+  while pgrep -x wf-recorder >/dev/null; do
+    sleep 0.1
+  done
+  file=
+  [[ -f $state ]] && file=$(<"$state")
+  rm -f "$state"
+  notify-send "Recording stopped" "${file:-}" -i video-x-generic
+  exit 0
 fi
+
+mkdir -p "$HOME/Videos"
+out="$HOME/Videos/recording-$(date +%Y%m%d-%H%M%S).mp4"
+printf '%s\n' "$out" > "$state"
+wf-recorder -f "$out" >/dev/null 2>&1 &
+disown

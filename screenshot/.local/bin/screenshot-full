@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-FILE="/tmp/screenshot-$(date +%s).png"
-
-grim "$FILE"
-wl-copy < "$FILE"
-flatpak run org.satty.Satty --filename "$FILE"
+grim - | satty --filename -

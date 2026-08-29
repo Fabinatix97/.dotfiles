@@ -29,6 +29,7 @@ sudo pacman -S --needed --noconfirm \
   git \
   github-cli \
   go \
+  grim \
   helm \
   hypridle \
   hyprland \
@@ -54,6 +55,7 @@ sudo pacman -S --needed --noconfirm \
   ripgrep \
   sane \
   satty \
+  slurp \
   starship \
   stow \
   swaync \
