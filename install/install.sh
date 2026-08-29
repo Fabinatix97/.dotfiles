@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+# Generic Arch Linux bootstrap shared by every machine.
+# Hardware- and host-specific steps live in sibling scripts:
+#   arch-secure-boot-setup.sh
+#   arch-nvidia-setup.sh
+#   arch-printer-setup.sh
 set -euo pipefail
 
 sudo -v
@@ -49,7 +54,6 @@ sudo pacman -S --needed --noconfirm \
   ripgrep \
   sane \
   satty \
-  sbctl \
   starship \
   stow \
   swaync \
@@ -133,19 +137,6 @@ bash -c '
   sdk install maven
 '
 
-# Set up printer
-sudo systemctl enable --now cups.service
-if lpinfo -m | grep -q 'lsb/usr/cupsfilters/pxlcolor.ppd'; then
-    sudo lpadmin \
-        -p HP-CP1525N \
-        -v socket://192.168.178.26:9100 \
-        -m lsb/usr/cupsfilters/pxlcolor.ppd \
-        -E
-    sudo lpadmin -d HP-CP1525N
-else
-    echo "HP CP1525N driver is not available; skipping printer setup."
-fi
-
 # Install nordvpn
 yay -S --noconfirm nordvpn-bin
 sudo usermod -aG nordvpn $USER
@@ -160,15 +151,6 @@ yay -S --noconfirm cursor-bin
 # Other
 mkdir -p "$HOME/projects/"
 
-# Configuring secure boot
-sudo sbctl create-keys
-
-# See https://wiki.archlinux.org/title/Unified_Extensible_Firmware_Interface/Secure_Boot#Signing
-sudo sbctl verify | sed -E 's|^.* (/.+) is not signed$|sudo sbctl sign -s "\1"|e' || true
-
-sudo sbctl verify
-sudo sbctl enroll-keys --microsoft
-
 echo
 echo "========================================"
 echo "Installation complete."
@@ -178,4 +160,10 @@ echo "  onedrive --sync --resync"
 echo "  systemctl --user enable --now onedrive.service"
 echo "  sudo systemctl enable --now nordvpnd"
 echo "  nordvpn login --token <YOUR_ACCESS_TOKEN>"
+echo
+echo "Machine-specific setup (only if needed):"
+echo
+echo "  ~/.dotfiles/install/arch-secure-boot-setup.sh"
+echo "  ~/.dotfiles/install/arch-nvidia-setup.sh"
+echo "  ~/.dotfiles/install/arch-printer-setup.sh"
 echo "========================================"
