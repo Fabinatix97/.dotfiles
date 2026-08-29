@@ -76,16 +76,40 @@ makepkg -si --needed --noconfirm
 cd "$HOME"
 rm -rf "$HOME/yay"
 
-# Setting up ssh
+# Setting up ssh with yubikey
+#mkdir -p "$HOME/.ssh"
+#chmod 700 "$HOME/.ssh"
+#cd "$HOME/.ssh"
+#cp -a "$HOME/.dotfiles/ssh/." "$HOME/.ssh"
+#chmod 600 "$HOME/.ssh/known_hosts"
+#echo "Insert your YubiKey and touch it when prompted..."
+#ssh-keygen -K
+#echo "Testing GitHub SSH authentication..."
+#ssh -i ~/.ssh/id_ed25519_sk_rk_personal -T git@github.com || true
+#rm -rf "$HOME/.dotfiles"
+
+# Setting up SSH
 mkdir -p "$HOME/.ssh"
 chmod 700 "$HOME/.ssh"
 cd "$HOME/.ssh"
 cp -a "$HOME/.dotfiles/ssh/." "$HOME/.ssh"
+echo "Decrypting private SSH key..."
+for attempt in 1 2 3; do
+  if age -d id_ed25519.age > id_ed25519; then
+    break
+  fi
+  rm -f id_ed25519
+  if [[ $attempt -eq 3 ]]; then
+    echo "Failed to decrypt SSH key after 3 attempts." >&2
+    exit 1
+  fi
+  echo "Wrong passphrase (attempt $attempt/3). Try again..."
+done
 chmod 600 "$HOME/.ssh/known_hosts"
-echo "Insert your YubiKey and touch it when prompted..."
-ssh-keygen -K
+chmod 600 "$HOME/.ssh/id_ed25519"
+rm id_ed25519.age
 echo "Testing GitHub SSH authentication..."
-ssh -i ~/.ssh/id_ed25519_sk_rk_personal -T git@github.com || true
+ssh -i ~/.ssh/id_ed25519 -T git@github.com || true
 rm -rf "$HOME/.dotfiles"
 
 # Clone and stow dotfiles
