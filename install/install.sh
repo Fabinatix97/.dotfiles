@@ -88,6 +88,17 @@ git clone -b arch git@github.com:Fabinatix97/.dotfiles.git "$HOME/.dotfiles/"
 cd "$HOME/.dotfiles/"
 git submodule update --init private
 stow btop fastfetch hypr kitty nvim screenshot starship tmux waybar wofi
+
+# Chromium defaults before the first launch. Chromium rewrites Preferences
+# afterwards, so this is a one-shot copy rather than a stow package.
+mkdir -p "$HOME/.config/chromium/Default"
+if [[ ! -f "$HOME/.config/chromium-flags.conf" ]]; then
+  cp "$HOME/.dotfiles/install/chromium/chromium-flags.conf" "$HOME/.config/chromium-flags.conf"
+fi
+if [[ ! -f "$HOME/.config/chromium/Default/Preferences" ]]; then
+  cp "$HOME/.dotfiles/install/chromium/initial-preferences.json" \
+    "$HOME/.config/chromium/Default/Preferences"
+fi
 git clone -b arch git@github.com:Fabinatix97/.dotfiles-personal.git "$HOME/.dotfiles-personal/"
 cd "$HOME/.dotfiles-personal/"
 stow bashrc git fonts onedrive
