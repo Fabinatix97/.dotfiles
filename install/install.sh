@@ -101,20 +101,9 @@ if [[ ! -f "$HOME/.config/chromium/Default/Preferences" ]]; then
 fi
 git clone -b arch git@github.com:Fabinatix97/.dotfiles-personal.git "$HOME/.dotfiles-personal/"
 cd "$HOME/.dotfiles-personal/"
+rm -f "$HOME/.bashrc" "$HOME/.bash_profile"
 stow bashrc git fonts onedrive
 fc-cache -fv
-
-# Update .bashrc
-cat >> "$HOME/.bashrc" <<'EOF'
-if [ -d ~/.bashrc.d ]; then
-  for rc in ~/.bashrc.d/*; do
-    if [ -f "$rc" ]; then
-      . "$rc"
-    fi
-  done
-fi
-unset rc
-EOF
 source "$HOME/.bashrc"
 
 # Enable hyprpokitagent
