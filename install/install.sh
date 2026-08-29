@@ -31,6 +31,7 @@ sudo pacman -S --needed --noconfirm \
   hyprpaper \
   hyprpicker \
   hyprpolkitagent \
+  jq \
   keepassxc \
   kitty \
   lazygit \
