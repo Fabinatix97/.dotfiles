@@ -2,8 +2,7 @@
     "margin": "10 15 -5 20",
     "modules-left": [
         "hyprland/workspaces",
-        "custom/dnf",
-        "custom/flatpak",
+        "custom/pacman",
         "custom/audio",
         "bluetooth",
         "network",
@@ -27,23 +26,13 @@
     //*  Modules configuration  *
     //***************************
 
-    "custom/dnf": {
-        "format": "{} ",
+    "custom/pacman": {
+        "format": "{} 󰣇",
         "interval": 3600,
-        "exec": "dnf check-update --refresh | grep -v '^$' | wc -l",
-        "exec-if": "command -v dnf",
-        "on-click": "kitty --class waybar sh -c 'sudo dnf upgrade -y; echo Done - Press enter to exit; read'; pkill -SIGRTMIN+8 waybar",
+        "exec": "checkupdates 2>/dev/null | wc -l",
+        "exec-if": "command -v checkupdates",
+        "on-click": "kitty --class waybar sh -c 'sudo pacman -Syu; echo Done - Press enter to exit; read'; pkill -SIGRTMIN+8 waybar",
         "signal": 8,
-        "tooltip": false
-    },
-
-    "custom/flatpak": {
-        "format": "{} ",
-        "interval": 3600,
-        "exec": "flatpak update --assumeyes --no-deploy 2>/dev/null | grep -E '^(Update|Install|Remove):' | wc -l",
-        "exec-if": "command -v flatpak",
-        "on-click": "kitty --class waybar sh -c 'flatpak update -y; echo Done - Press enter to exit; read'; pkill -SIGRTMIN+10 waybar",
-        "signal": 10,
         "tooltip": false
     },
 

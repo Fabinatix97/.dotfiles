@@ -43,9 +43,8 @@ window#waybar.hidden {
     color: white;
 }
 
-/* Custom modules */
-#custom-dnf,
-#custom-flatpak,
+/* Modules */
+#custom-pacman,
 #custom-audio,
 #bluetooth,
 #network,
