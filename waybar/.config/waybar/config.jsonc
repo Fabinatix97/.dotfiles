@@ -27,16 +27,6 @@
     //*  Modules configuration  *
     //***************************
 
-    "sway/workspaces": {
-        "disable-scroll": true,
-        "persistent_workspaces": {
-            "1": [],
-            "2": [],
-            "3": [],
-            "4": []
-        }
-    },
-
     "custom/dnf": {
         "format": "{} ",
         "interval": 3600,
