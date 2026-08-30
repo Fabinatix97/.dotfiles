@@ -15,8 +15,8 @@
     ],
     "modules-right": [
         "custom/recording",
-        "custom/mem",
-        "custom/cpu",
+        "memory",
+        "cpu",
         "temperature",
         "backlight",
         "battery"
@@ -110,17 +110,15 @@
         "tooltip": false
     },
 
-    "custom/mem": {
-        "format": "{} ",
+    "memory": {
+        "format": "{used:0.1f}G ",
         "interval": 3,
-        "exec": "free -h | awk '/Mem:/{printf $3}'",
         "tooltip": false
     },
 
-    "custom/cpu": {
-        "format": "{} ",
+    "cpu": {
+        "format": "{usage}% ",
         "interval": 3,
-        "exec": "$HOME/.config/waybar/scripts/cpu_usage.sh",
         "tooltip": false
     },
 

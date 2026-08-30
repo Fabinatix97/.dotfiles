@@ -53,8 +53,8 @@ window#waybar.hidden {
 #custom-day,
 #clock,
 #custom-recording,
-#custom-mem,
-#custom-cpu,
+#memory,
+#cpu,
 #temperature,
 #backlight,
 #battery {
