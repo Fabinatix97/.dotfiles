@@ -58,10 +58,10 @@
     },
 
     "custom/audio": {
-        "exec": "~/.config/waybar/scripts/audio-status.sh",
+        "exec": "$HOME/.config/waybar/scripts/audio-status.sh",
         "return-type": "json",
         "interval": 2,
-        "on-click": "kitty --class waybar ~/.config/waybar/scripts/audio-select.sh",
+        "on-click": "kitty --class waybar $HOME/.config/waybar/scripts/audio-select.sh",
         "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
         "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
         "tooltip": true

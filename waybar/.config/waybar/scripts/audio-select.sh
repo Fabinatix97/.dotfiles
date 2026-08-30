@@ -8,6 +8,7 @@ mapfile -t sinks < <(pactl list short sinks)
 
 [ "${#sinks[@]}" -eq 0 ] && { echo "No audio sinks found."; exit 1; }
 
+ids=()
 for i in "${!sinks[@]}"; do
     line="${sinks[$i]}"
     id=$(echo "$line" | awk '{print $1}')

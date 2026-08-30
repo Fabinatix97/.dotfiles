@@ -67,8 +67,8 @@ window#waybar.hidden {
     transition: none;
 }
 
-/* Pulseaudio muted */
-#pulseaudio.muted {
+/* Volume muted */
+#custom-audio.muted {
     background-color: #90b1b1;
     color: #2a5c45;
 }
