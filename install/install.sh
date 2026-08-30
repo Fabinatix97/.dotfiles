@@ -55,6 +55,7 @@ sudo pacman -S --needed --noconfirm \
   python \
   python-pip \
   ripgrep \
+  rofimoji \
   sane \
   satty \
   slurp \
