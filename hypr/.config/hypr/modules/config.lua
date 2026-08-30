@@ -49,8 +49,7 @@ hl.config({
     -- https://wiki.hypr.land/Configuring/Basics/Variables/#misc
     misc = {
         force_default_wallpaper = 0,
-        disable_hyprland_logo   = true,
-        disable_hyprland_guiutils_check = true
+        disable_hyprland_logo   = true
     },
 
     -- https://wiki.hypr.land/Configuring/Advanced-and-Cool/XWayland/
