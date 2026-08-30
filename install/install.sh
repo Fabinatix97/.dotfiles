@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 # Generic Arch Linux bootstrap shared by every machine.
-# Hardware- and host-specific steps live in sibling scripts:
+# Optional services:
+#   arch-docker-setup.sh
+#   arch-onedrive-setup.sh
+#   arch-nordvpn-setup.sh
+# Hardware- and host-specific steps:
 #   arch-secure-boot-setup.sh
 #   arch-nvidia-setup.sh
 #   arch-printer-setup.sh
@@ -163,14 +167,6 @@ bash -c '
   sdk install maven
 '
 
-# Install nordvpn
-yay -S --noconfirm nordvpn-bin
-sudo usermod -aG nordvpn $USER
-
-# Installing onedrive
-yay -S --noconfirm onedrive-abraunegg
-systemctl --user daemon-reload
-
 # Installing other AUR packages
 yay -S --noconfirm cursor-bin
 
@@ -178,14 +174,26 @@ yay -S --noconfirm cursor-bin
 mkdir -p "$HOME/projects/"
 
 echo
+install_services=n
+if [[ -t 0 ]]; then
+  read -r -p "Install services (Docker, OneDrive, NordVPN)? [y/N] " install_services
+fi
+if [[ "${install_services}" =~ ^[Yy]$ ]]; then
+  "$HOME/.dotfiles/install/arch-docker-setup.sh"
+  "$HOME/.dotfiles/install/arch-onedrive-setup.sh"
+  "$HOME/.dotfiles/install/arch-nordvpn-setup.sh"
+fi
+
+echo
 echo "========================================"
 echo "Installation complete."
-echo "Please reboot, then run:"
+echo "Please reboot."
 echo
-echo "  onedrive --sync --resync"
-echo "  systemctl --user enable --now onedrive.service"
-echo "  sudo systemctl enable --now nordvpnd"
-echo "  nordvpn login --token <YOUR_ACCESS_TOKEN>"
+echo "Optional services (if skipped above):"
+echo
+echo "  ~/.dotfiles/install/arch-docker-setup.sh"
+echo "  ~/.dotfiles/install/arch-onedrive-setup.sh"
+echo "  ~/.dotfiles/install/arch-nordvpn-setup.sh"
 echo
 echo "Machine-specific setup (only if needed):"
 echo
