@@ -5,8 +5,8 @@
         "custom/dnf",
         "custom/flatpak",
         "custom/audio",
-        "custom/bluetui",
-        "custom/network",
+        "bluetooth",
+        "network",
         "custom/nordvpn"
     ],
     "modules-center": [
@@ -68,15 +68,16 @@
         "tooltip": true
     },
 
-    "custom/bluetui": {
+    "bluetooth": {
         "format": "󰂯",
-        "on-click": "kitty --class waybar --hold -e ~/.local/bin/bluetui",
+        "on-click": "kitty --class waybar --hold -e bluetui",
         "tooltip": false
     },
 
-    "custom/network": {
+    "network": {
         "format": "",
-        "on-click": "kitty --class waybar sh -c '$HOME/.config/waybar/scripts/wifi_connect.sh'",
+        "format-disconnected": "󰖪",
+        "on-click": "kitty --class waybar -e $HOME/.local/bin/nmtui",
         "min-length": 3,
         "tooltip": false
     },

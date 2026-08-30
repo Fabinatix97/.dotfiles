@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+palette="${XDG_CONFIG_HOME:-$HOME/.config}/nmtui/palette"
+export NEWT_COLORS_FILE="$palette"
+export NMT_NEWT_COLORS_FILE="$palette"
+export COLORTERM="${COLORTERM:-truecolor}"
+
+exec /usr/bin/nmtui "$@"

@@ -14,6 +14,7 @@ sudo pacman -S --needed --noconfirm \
   base-devel \
   bat \
   bc \
+  bluetui \
   brightnessctl \
   btop \
   chromium \
@@ -118,7 +119,7 @@ rm -rf "$HOME/.dotfiles"
 git clone -b arch git@github.com:Fabinatix97/.dotfiles.git "$HOME/.dotfiles/"
 cd "$HOME/.dotfiles/"
 git submodule update --init private
-stow btop fastfetch hypr kitty nvim screenshot starship tmux waybar wofi
+stow btop fastfetch hypr kitty nmtui nvim screenshot starship tmux waybar wofi
 
 # Chromium defaults before the first launch. Chromium rewrites Preferences
 # afterwards, so this is a one-shot copy rather than a stow package.
