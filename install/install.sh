@@ -38,6 +38,7 @@ sudo pacman -S --needed --noconfirm \
   hyprpaper \
   hyprpicker \
   hyprpolkitagent \
+  hyprshutdown \
   jq \
   keepassxc \
   kitty \
