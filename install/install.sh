@@ -82,23 +82,13 @@ sudo pacman -S --needed --noconfirm \
   zip
 
 # Build yay for AUR access
-git clone https://aur.archlinux.org/yay.git "$HOME/yay"
-cd "$HOME/yay"
-makepkg -si --needed --noconfirm
-cd "$HOME"
-rm -rf "$HOME/yay"
-
-# Setting up ssh with yubikey
-#mkdir -p "$HOME/.ssh"
-#chmod 700 "$HOME/.ssh"
-#cd "$HOME/.ssh"
-#cp -a "$HOME/.dotfiles/ssh/." "$HOME/.ssh"
-#chmod 600 "$HOME/.ssh/known_hosts"
-#echo "Insert your YubiKey and touch it when prompted..."
-#ssh-keygen -K
-#echo "Testing GitHub SSH authentication..."
-#ssh -i ~/.ssh/id_ed25519_sk_rk_personal -T git@github.com || true
-#rm -rf "$HOME/.dotfiles"
+if ! command -v yay >/dev/null 2>&1; then
+  git clone https://aur.archlinux.org/yay.git "$HOME/yay"
+  cd "$HOME/yay"
+  makepkg -si --needed --noconfirm
+  cd "$HOME"
+  rm -rf "$HOME/yay"
+fi
 
 # Setting up SSH
 mkdir -p "$HOME/.ssh"
