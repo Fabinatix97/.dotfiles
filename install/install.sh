@@ -39,6 +39,7 @@ sudo pacman -S --needed --noconfirm \
   hyprpicker \
   hyprpolkitagent \
   hyprshutdown \
+  inter-font \
   jq \
   keepassxc \
   kitty \
@@ -47,11 +48,15 @@ sudo pacman -S --needed --noconfirm \
   make \
   man-db \
   man-pages \
+  markdownlint-cli2 \
   nautilus \
   neovim \
   noto-fonts \
   noto-fonts-emoji \
   obsidian \
+  pacman-contrib \
+  playerctl \
+  prettier \
   python \
   python-pip \
   ripgrep \
@@ -65,10 +70,12 @@ sudo pacman -S --needed --noconfirm \
   thunderbird \
   tmux \
   tree \
+  tree-sitter-cli \
   unzip \
   waybar \
   wf-recorder \
   wget \
+  wl-clipboard \
   wofi \
   wtype \
   xdg-desktop-portal-hyprland \
@@ -150,8 +157,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 nvm install 26
 
-npm install -g markdownlint-cli2 markdown-toc prettier tree-sitter-cli
-
 # Install tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
@@ -162,6 +167,8 @@ gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 bash -c '
   curl -s "https://get.sdkman.io?ci=true&rcupdate=false" | bash
   source "$HOME/.sdkman/bin/sdkman-init.sh"
+  sdk install java 17-tem
+  sdk install java 21-tem
   sdk install java 26-tem
   sdk install maven
 '
