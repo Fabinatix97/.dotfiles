@@ -48,6 +48,7 @@ sudo pacman -S --needed --noconfirm \
   keepassxc \
   kitty \
   lazygit \
+  libayatana-indicator \
   libfido2 \
   make \
   man-db \
@@ -168,7 +169,7 @@ bash -c '
 '
 
 # Installing other AUR packages
-yay -S --noconfirm cursor-bin
+yay -S --noconfirm cursor-bin localsend-bin
 
 # Other
 mkdir -p "$HOME/projects/"
