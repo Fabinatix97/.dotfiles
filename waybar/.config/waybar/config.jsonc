@@ -4,6 +4,7 @@
         "hyprland/workspaces",
         "custom/pacman",
         "custom/audio",
+        "backlight",
         "bluetooth",
         "network"
     ],
@@ -16,7 +17,6 @@
         "memory",
         "cpu",
         "temperature",
-        "backlight",
         "battery",
         "tray"
     ],
