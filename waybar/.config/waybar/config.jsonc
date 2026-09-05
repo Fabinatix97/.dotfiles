@@ -5,8 +5,7 @@
         "custom/pacman",
         "custom/audio",
         "bluetooth",
-        "network",
-        "custom/nordvpn"
+        "network"
     ],
     "modules-center": [
         "custom/day",
@@ -18,7 +17,8 @@
         "cpu",
         "temperature",
         "backlight",
-        "battery"
+        "battery",
+        "tray"
     ],
 
 
@@ -57,15 +57,6 @@
         "format-disconnected": "󰖪",
         "on-click": "kitty --class waybar -e $HOME/.local/bin/nmtui",
         "min-length": 3,
-        "tooltip": false
-    },
-
-    "custom/nordvpn": {
-        "format": "{} ",
-        "interval": 15,
-        "exec": "$HOME/.config/waybar/scripts/nordvpn_status.sh",
-        "on-click": "kitty --class waybar sh -c '$HOME/.config/waybar/scripts/nordvpn_connect.sh'",
-        "signal": 9,
         "tooltip": false
     },
 
@@ -126,5 +117,10 @@
         "format-alt": "{time} {icon}",
         "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
         "on-update": "$HOME/.config/waybar/scripts/check_battery.sh"
+    },
+
+    "tray": {
+        "icon-size": 18,
+        "spacing": 8
     }
 }
