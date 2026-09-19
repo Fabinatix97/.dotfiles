@@ -33,7 +33,9 @@ cat > "${NVIDIA_CONF}" <<'EOF'
 # DRM kernel mode setting for Wayland compositors.
 # https://wiki.archlinux.org/title/NVIDIA#DRM_kernel_mode_setting
 # https://wiki.archlinux.org/title/NVIDIA#Wayland_configuration
+# https://wiki.hypr.land/Nvidia/#suspendwakeup-issues
 options nvidia_drm modeset=1 fbdev=1
+options nvidia NVreg_PreserveVideoMemoryAllocations=1 NVreg_TemporaryFilePath=/var/tmp
 EOF
 
 echo "==> Early-loading NVIDIA modules and dropping the kms hook in /etc/mkinitcpio.conf"
