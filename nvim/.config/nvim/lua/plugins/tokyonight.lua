@@ -4,11 +4,11 @@ return {
 	config = function()
 		---@diagnostic disable-next-line: missing-fields
 		require("tokyonight").setup({
-			--transparent = true,
+			transparent = true,
 			styles = {
 				comments = { italic = false },
-				--sidebars = "transparent",
-				--floats = "transparent",
+				sidebars = "transparent",
+				floats = "transparent",
 			},
 		})
 		vim.cmd.colorscheme("tokyonight-storm")
