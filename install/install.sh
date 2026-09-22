@@ -98,7 +98,7 @@ bash -c '
 '
 
 # Installing other AUR packages
-yay -S --noconfirm cursor-bin localsend-bin
+yay -S --noconfirm localsend-bin opencode-bin
 
 # Other
 mkdir -p "$HOME/projects/"
