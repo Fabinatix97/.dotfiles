@@ -1,0 +1,69 @@
+#!/usr/bin/env bash
+# Single-word dict.cc lookup in wofi.
+set -euo pipefail
+
+word="${1:-}"
+
+parser=$(cat <<'PY'
+import html
+import re
+import sys
+
+query = sys.argv[1].strip().casefold()
+
+def clean(raw):
+    raw = re.sub(r'<div style="float:right;[^"]*">\d+</div>', '', raw)
+    raw = raw.replace('</a>', ' ')
+    raw = re.sub(r'</?(?:var|kbd)[^>]*>', '', raw)
+    raw = re.sub(r'<[^>]+>', '', raw)
+    raw = html.unescape(raw).replace('\u2013', '-').replace('\u00a0', ' ')
+    raw = re.sub(r'\{[^}]*\}', '', raw)
+    return re.sub(r'\s+', ' ', raw).strip()
+
+def column(raw):
+    return re.sub(r'^\d+', '', clean(raw)).lstrip('- ').strip()
+
+for row in re.findall(r"<tr id='tr\d+'>(.*?)</tr>", sys.stdin.read(), re.S):
+    cells = [column(c) for c in re.findall(r'<td class="td7nl" dir="ltr">(.*?)</td>', row, re.S)]
+    if len(cells) < 2:
+        continue
+    left, right = cells
+    if left.casefold().startswith(query):
+        source, translation = left, right
+    elif right.casefold().startswith(query):
+        source, translation = right, left
+    else:
+        continue
+    print(f'{translation.rstrip("-").strip()} :: {source}')
+PY
+)
+
+lookup_dictcc() {
+    curl -sLG --compressed --max-time 10 \
+        -A "Mozilla/5.0 (X11; Linux x86_64) wofi/translate" \
+        --data-urlencode "s=$1" \
+        https://www.dict.cc/ | python3 -c "$parser" "$1" || true
+}
+
+if [[ -z "$word" ]]; then
+    word="$(wofi -S dmenu -p "translate" < /dev/null || true)"
+fi
+[[ -n "$word" ]] || exit 0
+
+mapfile -t rows < <(lookup_dictcc "$word")
+
+if ((${#rows[@]} == 0)); then
+    notify-send "translate" "no results for \"$word\""
+    exit 1
+fi
+
+if ((${#rows[@]} == 1)); then
+    translation="${rows[0]%% :: *}"
+else
+    choice="$(printf '%s\n' "${rows[@]}" | wofi -S dmenu -p "$word" || true)"
+    [[ -n "$choice" ]] || exit 0
+    translation="${choice%% :: *}"
+fi
+
+wtype -- "$translation"
+wl-copy -- "$translation"
