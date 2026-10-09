@@ -34,7 +34,7 @@
         "interval": 3600,
         "exec": "yay -Qu 2>/dev/null | wc -l",
         "exec-if": "command -v yay",
-        "on-click": "kitty --class waybar sh -c 'yay -Syu; echo Done - Press enter to exit; read'; pkill -SIGRTMIN+8 waybar",
+        "on-click": "kitty --class waybar sh -c 'yay -Syu --needed --noconfirm; echo Done - Press enter to exit; read'; pkill -SIGRTMIN+8 waybar",
         "signal": 8,
         "tooltip": false
     },
