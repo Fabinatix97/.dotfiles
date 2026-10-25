@@ -44,6 +44,7 @@ neovim
 noto-fonts
 noto-fonts-emoji
 obsidian
+pacman-contrib
 playerctl
 prettier
 python

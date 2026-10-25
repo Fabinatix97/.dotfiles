@@ -32,9 +32,9 @@
     "custom/pacman": {
         "format": "{} 󰣇",
         "interval": 3600,
-        "exec": "yay -Qu 2>/dev/null | wc -l",
-        "exec-if": "command -v yay",
-        "on-click": "kitty --class waybar sh -c 'yay -Syu --needed --noconfirm; echo Done - Press enter to exit; read'; pkill -SIGRTMIN+8 waybar",
+        "exec": "bash -c ' { checkupdates 2>/dev/null; yay -Qua 2>/dev/null; } | wc -l'",
+        "exec-if": "command -v yay && command -v checkupdates",
+        "on-click": "kitty --class waybar sh -c 'yay -Syu --needed; echo Done - Press enter to exit; read'; pkill -SIGRTMIN+8 waybar",
         "signal": 8,
         "tooltip": false
     },
