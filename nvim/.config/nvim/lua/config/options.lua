@@ -18,8 +18,9 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 
--- Don't have `o` add a comment
-vim.opt.formatoptions:remove "o"
+-- Editing behavior
+vim.opt.formatoptions:remove("o")
+vim.opt.nrformats = "blank"
 
 vim.opt.colorcolumn = "80"
 vim.opt.cursorline = true
