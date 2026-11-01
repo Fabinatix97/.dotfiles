@@ -11,10 +11,10 @@ local surface = dmi:read("*l"):find("Surface Book 3")
 dmi:close()
 
 if surface then
-    hl.env("GDK_SCALE", "2")
-    hl.env("QT_SCALE_FACTOR", "2")
-    hl.env("QT_AUTO_SCREEN_SCALE_FACTOR", "0")
+	hl.env("GDK_SCALE", "2")
+	hl.env("QT_SCALE_FACTOR", "2")
+	hl.env("QT_AUTO_SCREEN_SCALE_FACTOR", "0")
 else
-    hl.env("LIBVA_DRIVER_NAME", "nvidia")
-    hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
+	hl.env("LIBVA_DRIVER_NAME", "nvidia")
+	hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
 end
