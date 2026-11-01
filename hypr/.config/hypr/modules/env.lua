@@ -12,7 +12,7 @@ dmi:close()
 
 if surface then
 	hl.env("GDK_SCALE", "2")
-	hl.env("QT_SCALE_FACTOR", "2")
+	hl.env("QT_SCALE_FACTOR", "1")
 	hl.env("QT_AUTO_SCREEN_SCALE_FACTOR", "0")
 else
 	hl.env("LIBVA_DRIVER_NAME", "nvidia")
