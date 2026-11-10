@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+lock_file="${XDG_RUNTIME_DIR:-/tmp}/fabinatix-screenshot.lock"
+exec 9>"$lock_file"
+flock -n 9 || exit 0
+
 grim - | satty --filename -
