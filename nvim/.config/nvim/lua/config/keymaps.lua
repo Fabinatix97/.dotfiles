@@ -1,7 +1,16 @@
 -- General
 vim.keymap.set({ "n", "v" }, "<C-c>", "<Esc>")
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
-vim.keymap.set("n", "-", vim.cmd.Ex, { desc = "open netrw" })
+
+-- Close floating windows before opening netrw
+vim.keymap.set("n", "-", function()
+	for _, win in ipairs(vim.api.nvim_list_wins()) do
+		if vim.api.nvim_win_get_config(win).relative ~= "" then
+			pcall(vim.api.nvim_win_close, win, true)
+		end
+	end
+	vim.cmd.Ex()
+end, { desc = "open netrw" })
 
 -- Keep view centered while scrolling
 vim.keymap.set("n", "J", "mzJ`z")
