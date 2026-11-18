@@ -63,6 +63,15 @@ if [[ ! -f "$HOME/.config/chromium/Default/Preferences" ]]; then
   cp "$HOME/.dotfiles/install/chromium/initial-preferences.json" \
     "$HOME/.config/chromium/Default/Preferences"
 fi
+
+# rpi-imager's packaged desktop entry hangs under Hyprland when Qt picks XWayland.
+rpi_imager_desktop="/usr/share/applications/com.raspberrypi.rpi-imager.desktop"
+if [[ -f "$rpi_imager_desktop" ]]; then
+  mkdir -p "$HOME/.local/share/applications"
+  sed 's|^Exec=|Exec=env -u DISPLAY QT_QPA_PLATFORM=wayland |' \
+    "$rpi_imager_desktop" > "$HOME/.local/share/applications/com.raspberrypi.rpi-imager.desktop"
+fi
+
 git clone -b main git@github.com:Fabinatix97/.dotfiles-personal.git "$HOME/.dotfiles-personal/"
 cd "$HOME/.dotfiles-personal/"
 rm -f "$HOME/.bashrc" "$HOME/.bash_profile"
